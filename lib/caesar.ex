@@ -8,6 +8,10 @@ defmodule Caesar do
     end
   end
 
+  def decipher(string, key) do
+    cipher(string, weak_cipher_func(-key))
+  end
+
   def cipher(string, func) do
     string |> String.downcase
            |> String.to_char_list
