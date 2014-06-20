@@ -7,6 +7,7 @@ defmodule CaesarTest do
   end
 
   test "encipher" do
-    assert Caesar.encipher("hi", { 3, 2 }) == <<14, 17>>
+    assert Caesar.encipher("hi", 3) == "kl"
+    assert Caesar.encipher("hi", { 3, 5 }) == "?B"
   end
 end
