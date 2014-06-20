@@ -2,9 +2,15 @@ defmodule Caesar do
   def encipher(string, key) do
     case key do
     { m, s } ->
-      cipher(string, cipher_func(m, s))
-    _ ->
+      if :lists.member(m, valid_primes) do
+        cipher(string, cipher_func(m, s))
+      else
+        :erlang.error("First element in key must be a valid prime below 127!")
+      end
+    s when is_number(s) ->
       cipher(string, weak_cipher_func(key))
+    _ ->
+      :erlang.error("Not a valid encryption key!")
     end
   end
 
