@@ -1,7 +1,8 @@
 defmodule CaesarTest do
   use ExUnit.Case
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  test "cipher" do
+    assert Caesar.cipher("hi", fn(c) -> c + 3 end) == "kl"
+    assert Caesar.cipher("kl", fn(c) -> c - 3 end) == "hi"
   end
 end
