@@ -12,17 +12,17 @@ defmodule CaesarTest do
   end
 
   test "encipher thows an exception for a tuple including an invalid first element" do
-    assert_raise ErlangError, fn ->
+    assert_raise InvalidKey, fn ->
       Caesar.encipher("hi", {4, 2})
     end
   end
 
   def test "encipher throws an exception for a non-number, non-tuple value" do
-    assert_raise ErlangError, fn ->
+    assert_raise InvalidKey, fn ->
       Caesar.encipher("hi", "there")
     end
 
-    assert_raise ErlangError, fn ->
+    assert_raise InvalidKey, fn ->
       Caesar.encipher("hi", <<1, 2>>)
     end
   end

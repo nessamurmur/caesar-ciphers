@@ -5,12 +5,12 @@ defmodule Caesar do
         if :lists.member(m, valid_primes) do
           cipher(string, cipher_func(m, s))
         else
-          :erlang.error("First element in key must be a valid prime below 127!")
+          raise InvalidKey, "First element in key must be a valid prime below 127!"
         end
       s when is_number(s) ->
         cipher(string, weak_cipher_func(key))
       _ ->
-        :erlang.error("Not a valid encryption key!")
+        raise InvalidKey
     end
   end
 
@@ -39,5 +39,13 @@ defmodule Caesar do
      31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
      73, 79, 83, 89, 97, 101, 103, 107, 109, 113
     ]
+  end
+end
+
+defmodule InvalidKey do
+  defexception [message: "Invalid cipher key!"]
+
+  def exception(msg) do
+    %InvalidKey{message: msg}
   end
 end
